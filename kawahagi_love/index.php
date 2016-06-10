@@ -12,45 +12,64 @@
  * @package Kawahagi_Wo_Mederukai
  */
 
-get_header(); ?>
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>同人サークルカワハギを愛出る会オフィシャルサイト</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="同人サークルカワハギを愛出る会オフィシャルサイトです。コミケなどのイベントを中心に、イラスト制作やマンガ制作などの同人活動を行っております。ジャンルは基本オリジナルです。" />
+        <meta name="keywords" content="同人,同人サークル,カワハギを愛出る会" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="css/kawahagi.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>同人サークル カワハギを愛出る会 オフィシャルサイト</h1>
+            <p id="copy"><small>Copyright &copy; カワハギを愛出る会 All Rights Reserved.</small></p>
+        </header>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+        <div id="top_main">
+            <div id="top_main_wrap"></div><!-- /top_main_wrap -->
+        </div><!-- /top_main -->
 
-		<?php
-		if ( have_posts() ) :
+        <div id="top_nav">
+            <div id="top_nav_wrap">
+                <ul>
+                    <li></li>
+                </ul>
+                <div class="tv"></div><!-- /tv -->
+            </div><!-- /top_nav_wrap -->
+        </div><!-- /top_nav -->
 
-			if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
+        <div id="contents">
+            <div id="contents_wrap">
+                <div id="main_contents">
+                <div class="banner_box">
 
-			<?php
-			endif;
+                    </div><!-- banner_box -->
+                    <div class="info_box">
 
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+                    </div><!-- /info_box -->
+                </div><!-- /main_contents -->
+                <div id="side_contents">
+                    <div class="sns_box">
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+                    </div><!-- /sns_box -->
+                </div><!-- /side_contents -->
+            </div><!-- /contents_wrap -->
+        </div><!-- /contents -->
 
-			endwhile;
+        <div id="foot_nav">
+            <div id="foot_nav_wrap">
+                <nav>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </nav>
+                <div class="tv"></div><!-- /tv -->
+            </div><!-- /foot_nav_wrap -->
+        </div><!-- /foot_nav -->
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+    </body>
+</html>
