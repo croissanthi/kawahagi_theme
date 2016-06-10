@@ -1,4 +1,302 @@
-.test{
-    width: test;
-    height: auto;
+@import "compass";
+@import "compass/reset";
+
+/******* font *******/
+$fs: 16px;
+$fs_title: 26px;
+$fs_title_circle: 36px;
+$fs_member_nsme: 24px;
+$fs_info_day: 16px;
+$fs_info: 20px;
+$fs_h1: 14px;
+$fs_copy: 10px;
+$fm: "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , "Meiryo UI" , "メイリオ" , Meiryo , sans-serif;
+$fm_mei: "Meiryo UI" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+
+/******** color ********/
+$green: #125045;
+$green_a: rgba(3,43,46,0.7);
+$pink: #e42a8a;
+$text_yelloe: #fff7ce;
+$white: #fff;
+$shadow_col: rgba(3,37,31,0.5);
+
+/******** boder ********/
+
+
+
+/******** reset ********/
+a{
+    text-decoration: none;
+}
+
+/******* @mixin *******/
+@mixin border_pink{
+    border-bottom: 5px solid $pink;
+}
+@mixin bar_green{
+    background: $green;
+    height: 50px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 500;
+    @include border_pink;
+    @include box-shadow(0px 3px 5px $shadow_col);
+}
+@mixin box_alpha{
+    background: $green_a;
+    border: #eef5df solid 5px;
+    box-sizing: border-box;
+    @include shadow;
+    @include border-radius(20px);
+}
+@mixin shadow{
+    @include box-shadow(5px 5px 5px $shadow_col);
+}
+
+/******** bg/bg_img ********/
+@mixin bg_main{
+    background: url(../images/main_bg.png) no-repeat center center;
+}
+@mixin bg_main_frame{
+    background: url(../images/main_frame.png)no-repeat center 60px;
+}
+@mixin bg{
+    background: url(../images/bg.png) repeat;
+}
+
+/******** wrap ********/
+@mixin wrap{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+
+/******** class ********/
+.clear{
+    @include pie-clearfix;
+}
+.italic{
+    font-style: italic;
+}
+
+
+/******** body ********/
+body{
+    font-size: $fs;
+    font-family: $fm;
+    line-height: 1.2;
+}
+#wrapper{
+
+}
+
+/******** header ********/
+header{
+    @include bar_green;
+    color: $white;
+    #header_wrap {
+        position: relative;
+        margin: 0 auto;
+        height: 100%;
+        h1{
+            font-size: $fs_h1;
+            position: absolute;
+            left: 1em;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 1em;
+        }
+        #copy{
+            font-size: $fs_copy;
+            position: absolute;
+            right: 1em;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 1em;
+
+        }
+    }
+}
+
+/******** top_main ********/
+#top_main {
+    @include bg_main;
+    #top_main_wrap {
+        @include wrap;
+    }
+    #top_main_box {
+        @include bg_main_frame;
+        position: relative;
+        height: 697px;
+    }
+    #top_main_title_box {
+        position: absolute;
+        top: 15px;
+        left: 10px;
+    }
+    #top_main_logo {
+        a {
+            &:hover{
+            }
+            img {
+            }
+        }
+    }
+
+    #top_main_title {
+        text-align: center;
+        font-size: $fs_title;
+        color: $green;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    br {
+    }
+    .marquee {
+        background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+        margin: 15px 90px;
+        line-height: 2;
+    }
+    .main_img1 ,.main_img2 ,.main_img3 {
+        position: absolute;
+    }
+    .main_img1 {
+        right: -70px;
+        top: 10px;
+        z-index: 200;
+    }
+    .main_img2 {
+        right: 347px;
+        top: 272px;
+        z-index: 300;
+    }
+    .main_img3 {
+        right: 270px;
+        top: 30px;
+        z-index: 100;
+    }
+}
+
+/******** top_nav ********/
+#top_nav {
+    @include bar_green;
+    height: 100px;
+    #top_nav_wrap {
+        @include wrap;
+        position: relative;
+        height: 100%;
+    }
+    .top_nav_box {
+        position: absolute;
+        left: 0px;
+        bottom: 5px;
+        ul {
+            li {
+                @include inline-block;
+                vertical-align: bottom;
+            }
+            :nth-child(odd){
+//                margin-bottom: 85px;
+            }
+            a {
+                &:hover{
+                }
+                img {
+                }
+            }
+        }
+    }
+
+    .tv {
+        position: absolute;
+        right: -10px;
+        bottom: 5px;
+    }
+}
+
+/******** contents ********/
+#contents {
+    @include bg;
+    #contents_wrap {
+        @include wrap;
+        padding-top: 30px;
+    }
+    #main_contents {
+        float: left;
+    }
+    .banner_box {
+        @include shadow;
+    }
+    .info_box {
+        @include box_alpha;
+    }
+    #side_contents {
+        float: right;
+    }
+    .sns_box {
+    }
+}
+
+/******** foot_nav ********/
+#foot_nav {
+    @include bar_green;
+    position: fixed;
+    bottom: -300px;
+    width: 100%;
+    #foot_nav_wrap {
+        @include wrap;
+        position: relative;
+        height: 100%;
+    }
+    nav {
+        position: absolute;
+        left: 0px;
+        bottom: 5px;
+        width: 100%;
+    }
+    ul {
+        li {
+            @include inline-block;
+            vertical-align: bottom;
+            margin-right: 1%;
+        }
+        :nth-child(odd){
+            //                margin-bottom: 85px;
+        }
+        a {
+            &:hover{
+            }
+            img {
+                width: 80%;
+            }
+        }
+    }
+    .tv {
+        position: absolute;
+        right: -80px;
+        bottom: 5px;
+        img{
+            width: 50%;
+        }
+    }
+    .page_top {
+        position: absolute;
+        right: 0px;
+        bottom: 5px;
+        a {
+            &:hover{
+            }
+        }
+        img {
+        }
+    }
+}
+
+/******** margin ********/
+@each $num in 1,2,3,4,5,6,7,8,9,10{
+    .mt#{$num}0{margin-top: #{$num}0px;}
 }
