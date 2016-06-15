@@ -6,7 +6,7 @@ module.exports = function(grunt){
             theme: 'kawahagi_love',
             sass: '_sass',
             css: '_css',
-
+            js: '_js',
         },
 
         compass: {
@@ -49,6 +49,14 @@ module.exports = function(grunt){
             }
         },
 
+        uglify: {
+            js: {
+                files: {
+                    '<%= dir.theme %>/js/<%= slug %>.min.js': ['<%= dir.js %>/<%= slug %>.js']
+                }
+            }
+        },
+
         watch: {
             compass:{
                 tasks: ['compass'],
@@ -58,10 +66,15 @@ module.exports = function(grunt){
                 tasks: ['cssmin'],
                 files:['<%= dir.css %>/<%= slug %>.css']
             },
+            uglify:{
+                tasks: ['uglify'],
+                files:['<%= dir.js %>/<%= slug %>.js']
+            },
         }
 
     });
 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-cssmin');

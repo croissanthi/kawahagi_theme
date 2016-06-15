@@ -6,10 +6,12 @@ $fs: 16px;
 $fs_title: 26px;
 $fs_title_circle: 36px;
 $fs_member_nsme: 24px;
-$fs_info_day: 16px;
+$fs_info_date: 16px;
 $fs_info: 20px;
 $fs_h1: 14px;
 $fs_copy: 10px;
+$fs_end_msg: 14px;
+$fs_ticker: 12px;
 $fm: "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , "Meiryo UI" , "メイリオ" , Meiryo , sans-serif;
 $fm_mei: "Meiryo UI" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
 
@@ -17,7 +19,7 @@ $fm_mei: "Meiryo UI" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic"
 $green: #125045;
 $green_a: rgba(3,43,46,0.7);
 $pink: #e42a8a;
-$text_yelloe: #fff7ce;
+$text_yellow: #fff7ce;
 $white: #fff;
 $shadow_col: rgba(3,37,31,0.5);
 
@@ -48,7 +50,7 @@ a{
     border: #eef5df solid 5px;
     box-sizing: border-box;
     @include shadow;
-    @include border-radius(20px);
+    @include border-radius(30px);
 }
 @mixin shadow{
     @include box-shadow(5px 5px 5px $shadow_col);
@@ -80,7 +82,18 @@ a{
 .italic{
     font-style: italic;
 }
+.wakame{
+    width:100%;
+    height:100%;
+    background-image: url('../images/wakame1.png'), url('../images/wakame2.png');
+    animation: wakame 8s linear infinite;
+}
 
+/******** animation ********/
+@keyframes wakame {
+    0% {background-position: 0 0, 0 0, 0 0;}
+    100% {background-position: 0px 400px, 0px 300px, 0px 0px;}
+}
 
 /******** body ********/
 body{
@@ -100,7 +113,7 @@ header{
         position: relative;
         margin: 0 auto;
         height: 100%;
-        h1{
+        .site_title{
             font-size: $fs_h1;
             position: absolute;
             left: 1em;
@@ -108,6 +121,12 @@ header{
             bottom: 0;
             margin: auto;
             height: 1em;
+            a{
+                color: $white;
+                &:hover{
+                    color: $white;
+                }
+            }
         }
         #copy{
             font-size: $fs_copy;
@@ -153,13 +172,15 @@ header{
         color: $green;
         font-weight: bold;
         margin-top: 10px;
+        span{
+            font-size: 80%;
+        }
     }
-    br {
-    }
-    .marquee {
+    .ticker {
         background: rgb(255, 255, 255) none repeat scroll 0% 0%;
         margin: 15px 90px;
         line-height: 2;
+        font-size: $fs_ticker;
     }
     .main_img1 ,.main_img2 ,.main_img3 {
         position: absolute;
@@ -194,13 +215,16 @@ header{
         position: absolute;
         left: 0px;
         bottom: 5px;
+        box-sizing: border-box;
         ul {
+            letter-spacing: -40em;
             li {
                 @include inline-block;
                 vertical-align: bottom;
-            }
-            :nth-child(odd){
-//                margin-bottom: 85px;
+                letter-spacing: normal;
+                &:nth-child(odd){
+                    margin-bottom: 85px;
+                }
             }
             a {
                 &:hover{
@@ -223,21 +247,95 @@ header{
     @include bg;
     #contents_wrap {
         @include wrap;
-        padding-top: 30px;
+        padding-top: 60px;
     }
+
+    /******** main_contents ********/
     #main_contents {
         float: left;
+        width: 650px;
     }
     .banner_box {
-        @include shadow;
+        margin-bottom: 40px;
+        img{
+            @include shadow;
+        }
+    }
+    #info_title {
+        margin-bottom: 3px;
     }
     .info_box {
         @include box_alpha;
+        padding: 20px 30px 25px;
+        min-height: 270px;
+        font-family: $fm_mei;
+        .info_list {
+            li {
+                display: table;
+                margin-bottom: 18px;
+                width: 100%;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                .new {
+                    display: table-cell;
+                    width: 13%;
+                    img{
+                        vertical-align: bottom;
+                        visibility: hidden;
+                    }
+                    &.visible{
+                        img{
+                            visibility: visible;
+                        }
+                    }
+
+                }
+                .info_date {
+                    width: 21%;
+                    color: $white;
+                    font-size: $fs_info_date;
+                    font-weight: bold;
+                    display: table-cell;
+                }
+                .info_title {
+                    width: 66%;
+                    font-size: $fs_info;
+                    font-weight: bold;
+                    display: table-cell;
+                    a{
+                        color: $text_yellow;
+                        text-decoration: underline;
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    /******** side_contents ********/
     #side_contents {
         float: right;
+        width: 300px;
     }
-    .sns_box {
+    .twitter {
+        margin-bottom: 40px;
+        iframe{
+            @include shadow;
+        }
+    }
+
+    /******** end_msg ********/
+    #end_msg {
+        @include wrap;
+        padding-bottom: 200px;
+        margin-top: 80px;
+        p {
+            font-size: $fs_end_msg;
+            font-family: $fm_mei;
+        }
     }
 }
 
@@ -245,7 +343,7 @@ header{
 #foot_nav {
     @include bar_green;
     position: fixed;
-    bottom: -300px;
+    bottom: -220px;
     width: 100%;
     #foot_nav_wrap {
         @include wrap;

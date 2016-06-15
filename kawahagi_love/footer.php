@@ -8,19 +8,50 @@
  *
  * @package Kawahagi_Wo_Mederukai
  */
-
+$theme_url = get_template_directory_uri();
 ?>
 
-	</div><!-- #content -->
+</div>
+<!-- /contents_wrap -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'kawahagi_love' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'kawahagi_love' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'kawahagi_love' ), 'kawahagi_love', '<a href="http://kawahagi-love.xyz" rel="designer">croissant.hi.</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+<div id="end_msg">
+    <p>この下はないよ！</p>
+    <div class="site-info">
+        <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'kawahagi_love' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'kawahagi_love' ), 'WordPress' ); ?></a>
+        <span class="sep"> | </span>
+        <?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'kawahagi_love' ), 'kawahagi_love', '<a href="http://kawahagi-love.xyz" rel="designer">croissant.hi.</a>' ); ?>
+    </div><!-- .site-info -->
+</div>
+<!-- /end_msg -->
+</div>
+<!-- /wakame -->
+</div>
+<!-- /contents -->
+
+<div id="foot_nav">
+    <div id="foot_nav_wrap">
+        <nav>
+            <ul>
+                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_home.png" alt="home"></a></li>
+                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_circle.png" alt="circle"></a></li>
+                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_gallery.png" alt="gallery"></a></li>
+                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_blog.png" alt="blog"></a></li>
+            </ul>
+        </nav>
+        <div class="tv">
+            <img src="<?php echo $theme_url; ?>/images/nav_tv.png" alt="テレビ">
+        </div>
+        <!-- /tv -->
+        <div class="page_top">
+            <a href=""><img src="<?php echo $theme_url; ?>/images/page_top.png" alt="ページTOPへ"></a>
+        </div>
+        <!-- /page_top -->
+    </div>
+    <!-- /foot_nav_wrap -->
+</div>
+<!-- /foot_nav -->
+</div>
+<!-- /wrapper -->
 
 <?php wp_footer(); ?>
 
