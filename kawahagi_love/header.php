@@ -25,10 +25,6 @@ if ( $description || is_customize_preview() ) : ?>
 <?php endif; ?>
 <meta name="keywords" content="同人,同人サークル,カワハギを愛出る会" />
 <?php wp_head(); ?>
-<link rel="stylesheet" type="text/css" href="<?php echo $theme_url; ?>/style.css">
-<link rel="stylesheet" type="text/css" href="<?php echo $theme_url; ?>/css/kawahagi.min.css">
-<script type="text/javascript" src="<?php echo $theme_url; ?>/js/kawahagi.min.js"></script>
-
 </head>
 
 <body <?php body_class(); ?>>
@@ -50,7 +46,16 @@ if ( $description || is_customize_preview() ) : ?>
                         <p id="top_main_logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $theme_url; ?>/images/main_logo.png" alt="カワハギを愛出る会"></a></p>
                         <h2 id="top_main_title">カワハギを愛出る会 OfficialSite<br>
                             <span>kawahagi wo mederukai</span></h2>
-                        <div class="ticker">カワハギを愛出る会へようこそ！</div>
+                        <div class="ticker">
+                            <ul>
+                                <li>カワハギを愛出る会へようこそ！</li>
+                                <li>ゆっくりしていってね！</li>
+                                <li>5時間くらい…</li>
+                                <li>それは長すぎかっ！(汗)</li>
+                                <li>そんなお時間ないですよね。</li>
+                                <li>失礼しました。(陳謝)</li>
+                            </ul>
+                        </div>
                     </div>
                     <!-- /top_main_title_box -->
                     <div class="main_img1"><img src="<?php echo $theme_url; ?>/images/main_img1.png" alt="イラスト1"></div>
@@ -67,15 +72,24 @@ if ( $description || is_customize_preview() ) : ?>
             <div id="top_nav_wrap">
                 <div class="top_nav_box">
                     <ul>
-                        <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_home.png" alt="home"></a></li>
-                        <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_circle.png" alt="circle"></a></li>
-                        <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_gallery.png" alt="gallery"></a></li>
-                        <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_blog.png" alt="blog"></a></li>
+                        <li><a href="/"><img src="<?php echo $theme_url; ?>/images/nav_home.png" alt="home"></a></li>
+                        <li><a href="/circle"><img src="<?php echo $theme_url; ?>/images/nav_circle.png" alt="circle"></a></li>
+                        <li><a href="/gallery"><img src="<?php echo $theme_url; ?>/images/nav_gallery.png" alt="gallery"></a></li>
+                        <li><a href="/blog"><img src="<?php echo $theme_url; ?>/images/nav_blog.png" alt="blog"></a></li>
                     </ul>
                 </div>
                 <!-- /top_nav_box -->
                 <div class="tv">
-                    <img src="<?php echo $theme_url; ?>/images/nav_tv.png" alt="テレビ">
+                    <div class="tv_wrap">
+                        <img src="<?php echo $theme_url; ?>/images/nav_tv.png" alt="テレビ">
+                        <div class="tv_screen">
+                            <div><img src="<?php echo $theme_url; ?>/images/screen01.png"></div>
+                            <div><img src="<?php echo $theme_url; ?>/images/screen02.png"></div>
+                            <div><img src="<?php echo $theme_url; ?>/images/screen03.png"></div>
+                        </div>
+                        <!-- /tv_screen -->
+                    </div>
+                    <!-- /tv_wrap -->
                 </div>
                 <!-- /tv -->
             </div>
@@ -83,6 +97,17 @@ if ( $description || is_customize_preview() ) : ?>
         </div>
         <!-- /top_nav -->
         <?php else : ?>
+        <div id="page_header">
+            <div id="page_header_wrap">
+                <p id="page_header_logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo $theme_url; ?>/images/header_logo.png" alt="カワハギを愛出る会"></a></p>
+                <div id="page_header_box">
+                </div>
+                <!-- /page_header_box -->
+            </div>
+            <!-- /page_header_wrap -->
+        </div>
+        <!-- /page_header -->
+        <div class="bar_green"></div>
         <?php endif; ?>
 
         <div id="contents">

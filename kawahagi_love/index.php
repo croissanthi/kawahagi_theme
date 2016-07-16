@@ -23,16 +23,19 @@ get_header(); ?>
     <h3 id="info_title"><img src="<?php echo $theme_url; ?>/images/title_info.png" alt="インフォメーション"></h3>
     <div class="info_box">
         <ul class="info_list">
+            <?php
+            $blog_posts = get_posts();
+            foreach($blog_posts as $post):
+            setup_postdata($post);
+            ?>
             <li>
                 <p class="new visible"><img src="<?php echo $theme_url; ?>/images/info_new.png" alt="NEW"></p>
-                <p class="info_date">2016.05.01</p>
-                <p class="info_title"><a href="">WEBサイトリニューアル！！</a></p>
+                <p class="info_date"><?php the_date('Y.m.d'); ?></p>
+                <p class="info_title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
             </li>
-            <li>
-                <p class="new visible"><img src="<?php echo $theme_url; ?>/images/info_new.png" alt="NEW"></p>
-                <p class="info_date">2016.05.01</p>
-                <p class="info_title"><a href="">WEBサイトリニューアル！！</a></p>
-            </li>
+            <?php
+            endforeach;
+            ?>
         </ul>
         <!-- /info_list -->
     </div>
@@ -66,3 +69,4 @@ get_header(); ?>
 
 <?php
 get_footer();
+?>

@@ -11,28 +11,26 @@
  *
  * @package Kawahagi_Wo_Mederukai
  */
-
+$theme_url = get_template_directory_uri();
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div id="main_contents" class="clumn_1">
+    <?php
+    while ( have_posts() ) : the_post();
+        the_content();
+        edit_post_link(
+            sprintf(
+                /* translators: %s: Name of current post */
+                esc_html__( 'Edit %s', 'kawahagi_love' ),
+                the_title( '<span class="screen-reader-text">"', '"</span>', false )
+            ),
+            '<span class="edit-link">',
+            '</span>'
+        );
+    endwhile;
+    ?>
+</div><!-- /main_contents -->
 
-			<?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+    <?php
+    get_footer();
+    ?>

@@ -6,46 +6,67 @@
  *
  * @package Kawahagi_Wo_Mederukai
  */
-
+$theme_url = get_template_directory_uri();
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div id="main_contents">
+        <?php
+        if ( have_posts() ) : ?>
 
-		<?php
-		if ( have_posts() ) : ?>
+    <div class="info_box">
+        <h3 id="archive_title"><?php the_archive_title(); ?></h3>
+        <ul class="info_list">
+            <?php
+            /* Start the Loop */
+            while ( have_posts() ) : the_post();
+            ?>
+            <li>
+                <p class="new visible"><img src="<?php echo $theme_url; ?>/images/info_new.png" alt="NEW"></p>
+                <p class="info_date"><?php the_date('Y.m.d'); ?></p>
+                <p class="info_title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
+            </li>
+            <?php
+            endwhile;
+            ?>
+        </ul>
+        <!-- /info_list -->
+    </div>
+    <!-- /info_box -->
+            <?php
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+            the_posts_navigation();
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+        else :
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+            get_template_part( 'template-parts/content', 'none' );
 
-			endwhile;
+        endif; ?>
 
-			the_posts_navigation();
+</div>
+<!-- /main_contents -->
 
-		else :
+<div id="side_contents">
+    <!-- Twitter -->
+    <div class="twitter">
+        <a class="twitter-timeline" href="https://twitter.com/KawahagiMederu" data-widget-id="497769869169790976">@KawahagiMederuさんのツイート</a>
+        <script>
+            ! function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                    p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + "://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, "script", "twitter-wjs");
+        </script>
+    </div>
+    <!-- /twitter -->
 
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+    <?php get_sidebar(); ?>
+</div>
+<!-- /side_contents -->
 
 <?php
-get_sidebar();
 get_footer();

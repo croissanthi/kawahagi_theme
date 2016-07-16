@@ -9,12 +9,11 @@
 
 
 //画像のパス短縮用
-function imagepassshort($arg) {
-    $content = str_replace('"images/', '"' . get_bloginfo('template_directory') . '/images/', $arg);
-    return $content;
-}
-add_action('the_content', 'imagepassshort');
-
+//function imagepassshort($arg) {
+//    $content = str_replace('"images/', '"' . get_bloginfo('template_directory') . '/images/', $arg);
+//    return $content;
+//}
+//add_action('the_content', 'imagepassshort');
 
 if ( ! function_exists( 'kawahagi_love_setup' ) ) :
 /**
@@ -160,4 +159,23 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+//独自CSS
+function my_styles() {
+    wp_enqueue_style( 'kawahagi', get_bloginfo( 'stylesheet_directory') . '/css/kawahagi.min.css', array(), null, 'all');
+    wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', array(), null, 'all');
+    wp_enqueue_style( 'fancybox', get_bloginfo( 'stylesheet_directory') . '/fancybox/jquery.fancybox-1.3.4.css', array(), null, 'all');
+}
+add_action( 'wp_enqueue_scripts', 'my_styles');
 
+//独自JS
+function my_scripts() {
+    if ( !is_admin() ) {
+        wp_deregister_script('jquery');
+        wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', array(), '1.8.3');
+    }
+    wp_enqueue_script( 'slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array('jquery'), false, false );
+    wp_enqueue_script( 'fancybox', get_bloginfo( 'stylesheet_directory') . '/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'), false, false );
+    wp_enqueue_script( 'ticker', get_bloginfo( 'stylesheet_directory') . '/js/jquery.simpleTicker.js', array('jquery'), false, false );
+    wp_enqueue_script( 'kawahagi', get_bloginfo( 'stylesheet_directory') . '/js/kawahagi.min.js', array('slick', 'fancybox', 'ticker'), false, true );
+}
+add_action( 'wp_enqueue_scripts', 'my_scripts');

@@ -32,18 +32,27 @@ $theme_url = get_template_directory_uri();
     <div id="foot_nav_wrap">
         <nav>
             <ul>
-                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_home.png" alt="home"></a></li>
-                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_circle.png" alt="circle"></a></li>
-                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_gallery.png" alt="gallery"></a></li>
-                <li><a href=""><img src="<?php echo $theme_url; ?>/images/nav_blog.png" alt="blog"></a></li>
+                <li><a href="/"><img src="<?php echo $theme_url; ?>/images/nav_home.png" alt="home"></a></li>
+                <li><a href="/circle"><img src="<?php echo $theme_url; ?>/images/nav_circle.png" alt="circle"></a></li>
+                <li><a href="/gallery"><img src="<?php echo $theme_url; ?>/images/nav_gallery.png" alt="gallery"></a></li>
+                <li><a href="/blog"><img src="<?php echo $theme_url; ?>/images/nav_blog.png" alt="blog"></a></li>
             </ul>
         </nav>
         <div class="tv">
-            <img src="<?php echo $theme_url; ?>/images/nav_tv.png" alt="テレビ">
+            <div class="tv_wrap">
+                <img src="<?php echo $theme_url; ?>/images/nav_tv.png" alt="テレビ">
+                <div class="tv_screen">
+                    <div><img src="<?php echo $theme_url; ?>/images/screen01.png"></div>
+                    <div><img src="<?php echo $theme_url; ?>/images/screen02.png"></div>
+                    <div><img src="<?php echo $theme_url; ?>/images/screen03.png"></div>
+                </div>
+                <!-- /tv_screen -->
+            </div>
+            <!-- /tv_wrap -->
         </div>
         <!-- /tv -->
         <div class="page_top">
-            <a href=""><img src="<?php echo $theme_url; ?>/images/page_top.png" alt="ページTOPへ"></a>
+            <a href="#"><img src="<?php echo $theme_url; ?>/images/page_top.png" alt="ページTOPへ"></a>
         </div>
         <!-- /page_top -->
     </div>

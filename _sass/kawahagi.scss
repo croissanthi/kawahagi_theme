@@ -12,6 +12,17 @@ $fs_h1: 14px;
 $fs_copy: 10px;
 $fs_end_msg: 14px;
 $fs_ticker: 12px;
+$fs_member_position: 24px;
+$fs_member_name: 40px;
+$fs_member_plofile: 16px;
+$fs_blog_title: 20px;
+$fs_blog_date: 12px;
+$fs_blog_text: 14px;
+$fs_widget_title: 18px;
+$fs_widget_list: 14px;
+$fs_archive_title: 16px;
+$fs_site_info: 12px;
+
 $fm: "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , "Meiryo UI" , "メイリオ" , Meiryo , sans-serif;
 $fm_mei: "Meiryo UI" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
 
@@ -19,9 +30,14 @@ $fm_mei: "Meiryo UI" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic"
 $green: #125045;
 $green_a: rgba(3,43,46,0.7);
 $pink: #e42a8a;
+$pink_l: #ff80c2;
 $text_yellow: #fff7ce;
 $white: #fff;
 $shadow_col: rgba(3,37,31,0.5);
+$tv_border_blue: #1593b5;
+$gray_blog_date: #aaa;
+$gray_widget_list: #aaa;
+$gray_widget_list2: #222;
 
 /******** boder ********/
 
@@ -52,6 +68,11 @@ a{
     @include shadow;
     @include border-radius(30px);
 }
+@mixin box_white{
+    background: $white;
+    @include border-radius(50px);
+    @include shadow;
+}
 @mixin shadow{
     @include box-shadow(5px 5px 5px $shadow_col);
 }
@@ -66,6 +87,10 @@ a{
 @mixin bg{
     background: url(../images/bg.png) repeat;
 }
+@mixin bg_page_header{
+    background: url(../images/header_bg.png)no-repeat center center;
+}
+
 
 /******** wrap ********/
 @mixin wrap{
@@ -88,11 +113,72 @@ a{
     background-image: url('../images/wakame1.png'), url('../images/wakame2.png');
     animation: wakame 8s linear infinite;
 }
+.bar_green {
+    @include bar_green;
+    min-height: 55px;
+}
+.tv {
+    .tv_wrap {
+        position: relative;
+        perspective: 10px;
+    }
+    .tv_screen {
+        position: absolute;
+        top: 32%;
+        left: 2%;
+        width: 63%;
+        line-height: 0;
+        box-sizing: border-box;
+        transform: rotateY(-0.1deg);
+        border: 5px solid $tv_border_blue;
+        .slick-arrow{
+            position: absolute;
+            background: none;
+            border: none;
+            box-shadow: none;
+            opacity: 0;
+        }
+        .slick-next{
+            width: 15%;
+            height: 20%;
+            top: 0;
+            right: -19%;
+        }
+        .slick-prev{
+            width: 8%;
+            height: 10%;
+            top: 29%;
+            right: -16%;
+        }
+        img {
+        }
+    }
+}
 
 /******** animation ********/
 @keyframes wakame {
     0% {background-position: 0 0, 0 0, 0 0;}
     100% {background-position: 0px 400px, 0px 300px, 0px 0px;}
+}
+@mixin nav_anime{
+    img{
+        @include transition(transform 0.3s ease-out 0.2s);
+    }
+    &:hover{
+        img{
+            @include transform(translate(0,-15px));
+        }
+    }
+}
+@mixin page_top_anime{
+    img{
+        @include transition(transform 2s ease-out 0.2s);
+    }
+    &:hover{
+        img{
+            @include transform(rotate(20deg));
+        }
+    }
 }
 
 /******** body ********/
@@ -100,10 +186,15 @@ body{
     font-size: $fs;
     font-family: $fm;
     line-height: 1.2;
+    background-color: $green;
 }
 #wrapper{
 
 }
+a:focus{
+    outline: none;
+}
+
 
 /******** header ********/
 header{
@@ -181,6 +272,14 @@ header{
         margin: 15px 90px;
         line-height: 2;
         font-size: $fs_ticker;
+        position: relative;
+        overflow: hidden;
+        text-indent: 0.5em;
+        ul{
+            li{
+                opacity: 0;
+            }
+        }
     }
     .main_img1 ,.main_img2 ,.main_img3 {
         position: absolute;
@@ -217,7 +316,7 @@ header{
         bottom: 5px;
         box-sizing: border-box;
         ul {
-            letter-spacing: -40em;
+            letter-spacing: -5px;
             li {
                 @include inline-block;
                 vertical-align: bottom;
@@ -227,6 +326,7 @@ header{
                 }
             }
             a {
+                @include nav_anime;
                 &:hover{
                 }
                 img {
@@ -254,6 +354,10 @@ header{
     #main_contents {
         float: left;
         width: 650px;
+        &.clumn_1{
+            width: 100%;
+            float: none;
+        }
     }
     .banner_box {
         margin-bottom: 40px;
@@ -336,6 +440,13 @@ header{
             font-size: $fs_end_msg;
             font-family: $fm_mei;
         }
+
+        .site-info{
+            font-size: $fs_site_info;
+            a{
+                color: rosybrown;
+            }
+        }
     }
 }
 
@@ -366,6 +477,7 @@ header{
             //                margin-bottom: 85px;
         }
         a {
+            @include nav_anime;
             &:hover{
             }
             img {
@@ -375,10 +487,11 @@ header{
     }
     .tv {
         position: absolute;
-        right: -80px;
+        right: 140px;
+        width: 21%;
         bottom: 5px;
-        img{
-            width: 50%;
+        .tv_screen{
+            border: 3px solid $tv_border_blue;
         }
     }
     .page_top {
@@ -386,10 +499,168 @@ header{
         right: 0px;
         bottom: 5px;
         a {
+            @include page_top_anime;
             &:hover{
             }
         }
         img {
+        }
+    }
+}
+
+/******** page ********/
+#page_header {
+    @include bg_page_header;
+    padding: 10px 0;
+    #page_header_wrap {
+        @include wrap;
+    }
+    #page_header_logo {
+    }
+    a {
+        &:hover{
+        }
+    }
+    img {
+    }
+    #page_header_box {
+    }
+}
+
+/******** circle ********/
+#circle_box {
+    @include box_white;
+    width: 860px;
+    margin: 0 auto;
+    padding: 40px 55px 50px;
+    text-align: center;
+    margin-bottom: 80px;
+    #circle_title {
+        font-size: $fs_title_circle;
+        color: $pink;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+    #circle_text {
+        font-weight: bold;
+        line-height: 1.8;
+    }
+}
+#title_member {
+    margin-bottom: 20px;
+}
+.member_box {
+    margin-bottom: 50px;
+    .member_thumb {
+        float: left;
+    }
+    .member_text_box {
+        @include box_alpha;
+        font-family: $fm_mei;
+        color: $white;
+        float: right;
+        padding: 35px 35px 60px;
+        width: 81%;
+        letter-spacing: 0.1em;
+    }
+    .member_position {
+        font-size: $fs_member_position;
+        color: $pink_l;
+        margin-bottom: 20px;
+    }
+    .member_name {
+        font-size: $fs_member_name;
+        margin-bottom: 25px;
+    }
+    .member_plofile {
+        font-size: $fs_member_plofile;
+        line-height: 1.6;
+    }
+}
+
+/******** gallery ********/
+#title_gallery {
+    margin-bottom: 20px;
+}
+#gallery_wrap {
+    #gallery_list {
+        text-align: center;
+    }
+    .gallery_item {
+        @include inline-block;
+        @include border-radius(50%);
+        overflow: hidden;
+        border: 8px solid #fff;
+        max-width: 176px;
+        max-height: 176px;
+        margin: 10px;
+    }
+    a {
+        &:hover{
+        }
+    }
+    img {
+    }
+}
+
+/******** blog ********/
+.blog_box {
+    @include box_white;
+    padding: 30px 40px 40px;
+    min-height: 270px;
+    margin-bottom: 50px;
+    font-family: $fm_mei;
+    letter-spacing: 0.5px;
+    .blog_title_box {
+        border-bottom: 3px dotted $pink;
+        padding-left: 4px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .blog_title {
+        font-size: $fs_blog_title;
+        font-weight: bold;
+    }
+    .blog_date {
+        font-size: $fs_blog_date;
+        color: $gray_blog_date;
+        text-align: right;
+    }
+    .blog_text_box {
+        padding-left: 4px;
+        p {
+            font-size: $fs_blog_text;
+            line-height: 1.5;
+        }
+    }
+}
+
+#archive_title{
+    font-size: $fs_archive_title;
+    color: $pink_l;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/******** widget ********/
+.widget{
+    @include box_white;
+    padding: 30px 40px;
+    min-height: 150px;
+    .widget-title{
+        font-size: $fs_widget_title;
+        margin-bottom: 5px;
+
+    }
+    ul{
+        li{
+            a{
+                font-size: $fs_widget_list;
+                color: $gray_widget_list;
+                &:hover{
+                    color: $gray_widget_list2;
+                }
+            }
         }
     }
 }
